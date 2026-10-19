@@ -1,0 +1,24 @@
+{
+  "name": "@barok/adapter-mcp",
+  "version": "0.0.1-experimental",
+  "private": true,
+  "description": "MCP protocol adapter for host-neutral Barok Core operations",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepack": "npm run build"
+  },
+  "files": ["README.md", "dist/"],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@barok/core": "0.0.1-experimental",
+    "@modelcontextprotocol/sdk": "^1.25.1"
+  }
+}

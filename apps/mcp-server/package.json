@@ -1,0 +1,15 @@
+{
+  "name": "@barok/mcp-server",
+  "version": "0.0.1-experimental",
+  "private": true,
+  "description": "Independent stdio MCP server composed from Barok Core",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@barok/adapter-mcp": "0.0.1-experimental",
+    "@modelcontextprotocol/sdk": "^1.25.1"
+  }
+}

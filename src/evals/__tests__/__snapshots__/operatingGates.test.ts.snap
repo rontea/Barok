@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Priority 3 evaluation and operating gates keeps replay, scheduler, SSE replay, and fixture snapshots bounded 1`] = `
+{
+  "contiguous": true,
+  "eventCount": 257,
+  "invariantValid": true,
+  "lastSeq": 257,
+  "terminal": "done",
+}
+`;

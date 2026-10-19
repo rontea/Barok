@@ -1,0 +1,122 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+out/
+.output/
+coverage/
+.nyc_output/
+*.tsbuildinfo
+*.map
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+*.secret
+secrets/
+.secrets/
+.continue/
+# Provider settings file (may contain live API keys and model routes)
+react-engine.providers.yaml
+react-engine.providers.*.yaml
+
+# Package manager auth and local config
+.npmrc
+.yarnrc
+.yarnrc.yml
+.pnpmrc
+.pnpm-store/
+
+# Logs and generated run artifacts
+logs/
+storage/
+.react-engine/
+.barok/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.sqlite-journal
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+*.log
+*.zip
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+.node_repl_history
+out.txt
+structured_logger_test_output.txt
+react_temp_test/
+crew_temp_test/
+tests/evals/results/
+# Generated test output and runtime workspace
+test_out.txt
+target/
+test-results/
+test-output/
+playwright-report/
+blob-report/
+
+# Local scratch, temporary, and backup files
+scratch/
+.tmp/
+*.tmp
+*.bak
+*.backup
+*.old
+*.orig
+*.rej
+
+# Local editor and OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+desktop.ini
+.vscode/
+.idea/
+.cursor/
+.windsurf/
+*.swp
+*.swo
+
+# Test and tool caches
+.eslintcache
+.prettiercache
+.jest/
+.vitest/
+.vite/
+.turbo/
+.cache/
+tmp/
+temp/
+
+# VS Code extension packaging
+*.vsix
+vscode-extension/dist/
+vscode-extension/out/
+
+# Migration notes and workspace scratch
+barok_move_todo/

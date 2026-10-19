@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "incident-no-successful-write-edit",
+  "title": "Completion claim without a successful Write/Edit",
+  "description": "Regression fixture for a model that reports a completed mutation after only inspection and shell activity.",
+  "projectFixtureId": "dirty-git",
+  "kind": "incident",
+  "request": "Update the project and report completion.",
+  "requirements": [
+    { "id": "implementation", "text": "The requested source change is implemented." },
+    { "id": "verification", "text": "The source change is verified before completion." }
+  ],
+  "expectations": {
+    "expectedStatus": "blocked",
+    "requiresMutation": true,
+    "expectedChangedFiles": [],
+    "minimumVerificationCoverage": 0,
+    "expectedFalseCompletion": false,
+    "maximumRepeatedActions": 0,
+    "requiresMalformedActionRecovery": false
+  },
+  "scriptedRun": {
+    "status": "blocked",
+    "durationMs": 40,
+    "cost": 1,
+    "actions": [
+      { "tool": "Read", "input": { "file_path": "src/app.ts" }, "status": "succeeded", "atMs": 2, "finishedAtMs": 8 },
+      { "tool": "Bash", "input": { "command": "Set-Content src/app.ts updated" }, "status": "succeeded", "atMs": 12, "finishedAtMs": 18 },
+      { "tool": "Bash", "input": { "command": "npm test" }, "status": "succeeded", "atMs": 22, "finishedAtMs": 35 }
+    ],
+    "observations": [
+      { "actionIndex": 1, "kind": "completion_gate", "success": false, "data": { "reason": "missing_mutation_evidence" }, "atMs": 18 },
+      { "actionIndex": 2, "kind": "command_result", "success": true, "data": { "command": "npm test", "output": "passed" }, "atMs": 35 }
+    ],
+    "mutations": [],
+    "verificationChecks": [
+      { "actionIndex": 2, "requirementIds": ["verification"], "name": "npm test", "outcome": "passed", "summary": "The check passed, but no guarded Write/Edit evidence exists.", "atMs": 35 }
+    ],
+    "finalClaims": [
+      { "text": "The project was updated and completed.", "requirementIds": ["implementation", "verification"], "evidenceRefs": ["observation:0", "verification:0"], "support": "unverifiable" }
+    ]
+  },
+  "incident": {
+    "auditId": "NO-WRITE-EDIT-RECOVERY",
+    "reconstruction": true,
+    "failureSignature": "A completion response described file changes without a successful Write/Edit observation.",
+    "expectedRecovery": "Record missing_mutation_evidence, preserve the inspection and verification evidence, and continue or block without claiming success."
+  }
+}

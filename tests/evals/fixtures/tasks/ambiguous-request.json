@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "ambiguous-request",
+  "title": "Materially ambiguous request",
+  "description": "Stop with a blocker when missing information would materially change implementation.",
+  "projectFixtureId": "no-git",
+  "kind": "ambiguous",
+  "request": "Make it better.",
+  "requirements": [],
+  "expectations": {
+    "expectedStatus": "blocked",
+    "requiresMutation": false,
+    "expectedChangedFiles": [],
+    "minimumVerificationCoverage": 0,
+    "expectedFalseCompletion": false,
+    "maximumRepeatedActions": 0,
+    "requiresMalformedActionRecovery": false
+  },
+  "scriptedRun": {
+    "status": "blocked",
+    "durationMs": 10,
+    "cost": 0,
+    "actions": [],
+    "observations": [],
+    "mutations": [],
+    "verificationChecks": [],
+    "finalClaims": []
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "todo-phase",
+  "title": "TODO-driven phase implementation",
+  "description": "Treat a TODO as requirements, preserve a dirty file, implement source, verify, then update the tracker.",
+  "projectFixtureId": "dirty-git",
+  "kind": "todo_phase",
+  "request": "Implement Phase 2 from TODO.md, preserve my existing changes, verify it, and mark it done.",
+  "requirements": [
+    { "id": "source-change", "text": "The requested feature is implemented in source code." },
+    { "id": "user-change", "text": "The existing src/config.js user change is preserved." },
+    { "id": "tracker-change", "text": "TODO.md is updated only after implementation and verification." }
+  ],
+  "expectations": {
+    "expectedStatus": "completed",
+    "requiresMutation": true,
+    "expectedChangedFiles": ["src/feature.js", "TODO.md"],
+    "minimumVerificationCoverage": 1,
+    "expectedFalseCompletion": false,
+    "maximumRepeatedActions": 0,
+    "requiresMalformedActionRecovery": false
+  },
+  "scriptedRun": {
+    "status": "completed",
+    "durationMs": 140,
+    "cost": 3,
+    "actions": [
+      { "tool": "Read", "input": { "file_path": "TODO.md" }, "status": "succeeded", "atMs": 2, "finishedAtMs": 8 },
+      { "tool": "Read", "input": { "file_path": "src/feature.js" }, "status": "succeeded", "atMs": 10, "finishedAtMs": 15 },
+      { "tool": "Edit", "input": { "file_path": "src/feature.js" }, "status": "succeeded", "atMs": 25, "finishedAtMs": 42 },
+      { "tool": "Test", "input": { "command": "npm test" }, "status": "succeeded", "atMs": 55, "finishedAtMs": 105 },
+      { "tool": "Edit", "input": { "file_path": "TODO.md" }, "status": "succeeded", "atMs": 112, "finishedAtMs": 122 }
+    ],
+    "observations": [],
+    "mutations": [
+      { "actionIndex": 2, "requirementIds": ["source-change"], "path": "src/feature.js", "operation": "modified", "success": true, "atMs": 42 },
+      { "actionIndex": 4, "requirementIds": ["tracker-change"], "path": "TODO.md", "operation": "modified", "success": true, "atMs": 122 }
+    ],
+    "verificationChecks": [
+      { "actionIndex": 3, "requirementIds": ["source-change", "user-change", "tracker-change"], "name": "npm test and dirty-tree preservation", "outcome": "passed", "summary": "Tests passed and src/config.js remained unchanged by the agent.", "atMs": 105 }
+    ],
+    "finalClaims": [
+      { "text": "Implemented Phase 2 in source, preserved the existing config change, verified it, and then updated TODO.md.", "requirementIds": ["source-change", "user-change", "tracker-change"], "evidenceRefs": ["mutation:0", "mutation:1", "verification:0"], "support": "supported" }
+    ]
+  }
+}

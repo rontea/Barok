@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "feature-implementation",
+  "title": "Feature implementation",
+  "description": "Add a visible React feature and verify the build.",
+  "projectFixtureId": "react-vite",
+  "kind": "feature",
+  "request": "Add a reset button to App and verify the production build.",
+  "requirements": [
+    { "id": "reset-control", "text": "App renders a reset button." },
+    { "id": "build-valid", "text": "The production build passes." }
+  ],
+  "expectations": {
+    "expectedStatus": "completed",
+    "requiresMutation": true,
+    "expectedChangedFiles": ["src/App.jsx"],
+    "minimumVerificationCoverage": 1,
+    "expectedFalseCompletion": false,
+    "maximumRepeatedActions": 0,
+    "requiresMalformedActionRecovery": false
+  },
+  "scriptedRun": {
+    "status": "completed",
+    "durationMs": 110,
+    "cost": 2,
+    "actions": [
+      { "tool": "Read", "input": { "file_path": "src/App.jsx" }, "status": "succeeded", "atMs": 2, "finishedAtMs": 9 },
+      { "tool": "Edit", "input": { "file_path": "src/App.jsx" }, "status": "succeeded", "atMs": 20, "finishedAtMs": 35 },
+      { "tool": "Build", "input": { "command": "npm run build" }, "status": "succeeded", "atMs": 45, "finishedAtMs": 100 }
+    ],
+    "observations": [],
+    "mutations": [
+      { "actionIndex": 1, "requirementIds": ["reset-control"], "path": "src/App.jsx", "operation": "modified", "success": true, "atMs": 35 }
+    ],
+    "verificationChecks": [
+      { "actionIndex": 2, "requirementIds": ["reset-control", "build-valid"], "name": "npm run build", "outcome": "passed", "summary": "Vite build passed.", "atMs": 100 }
+    ],
+    "finalClaims": [
+      { "text": "Added the reset button and verified the Vite build.", "requirementIds": ["reset-control", "build-valid"], "evidenceRefs": ["mutation:0", "verification:0"], "support": "supported" }
+    ]
+  }
+}

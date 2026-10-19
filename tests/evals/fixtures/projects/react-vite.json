@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "react-vite",
+  "title": "React and Vite",
+  "description": "Minimal React application with Vite build and test scripts.",
+  "projectType": "react_vite",
+  "packageManager": "npm",
+  "gitMode": "clean",
+  "files": {
+    "package.json": "{\n  \"name\": \"eval-react-vite\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": { \"build\": \"vite build\", \"test\": \"vitest run\" },\n  \"dependencies\": { \"react\": \"^19.0.0\", \"react-dom\": \"^19.0.0\" },\n  \"devDependencies\": { \"vite\": \"^7.0.0\", \"vitest\": \"^3.0.0\" }\n}\n",
+    "index.html": "<div id=\"root\"></div><script type=\"module\" src=\"/src/main.jsx\"></script>\n",
+    "src/main.jsx": "import React from 'react';\nimport { createRoot } from 'react-dom/client';\nimport App from './App.jsx';\ncreateRoot(document.getElementById('root')).render(<App />);\n",
+    "src/App.jsx": "export default function App() { return <main>Ready</main>; }\n",
+    "vite.config.js": "import { defineConfig } from 'vite';\nexport default defineConfig({});\n"
+  },
+  "expectedDiscovery": {
+    "languages": ["JavaScript", "JSX"],
+    "frameworks": ["React", "Vite"],
+    "commands": ["npm run build", "npm test"]
+  }
+}

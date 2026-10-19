@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "node-typescript",
+  "title": "Node TypeScript",
+  "description": "Minimal strict TypeScript service project.",
+  "projectType": "node_typescript",
+  "packageManager": "npm",
+  "gitMode": "clean",
+  "files": {
+    "package.json": "{\n  \"name\": \"eval-node-typescript\",\n  \"type\": \"module\",\n  \"scripts\": { \"build\": \"tsc -p tsconfig.json\", \"test\": \"node --test\" },\n  \"devDependencies\": { \"typescript\": \"^5.8.0\" }\n}\n",
+    "tsconfig.json": "{\n  \"compilerOptions\": { \"target\": \"ES2022\", \"module\": \"NodeNext\", \"moduleResolution\": \"NodeNext\", \"strict\": true, \"outDir\": \"dist\" },\n  \"include\": [\"src\"]\n}\n",
+    "src/math.ts": "export function add(left: number, right: number): number { return left + right; }\n"
+  },
+  "expectedDiscovery": {
+    "languages": ["TypeScript"],
+    "frameworks": ["Node.js"],
+    "commands": ["npm run build", "npm test"]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "continuation-ambiguous-confirmation",
+  "title": "Ambiguous conversational confirmation",
+  "description": "A confirmation without an identifiable parent goal blocks instead of guessing or mutating unrelated files.",
+  "projectFixtureId": "no-git",
+  "kind": "ambiguous",
+  "request": "Yes, please continue.",
+  "requirements": [],
+  "expectations": {
+    "expectedStatus": "blocked",
+    "requiresMutation": false,
+    "expectedChangedFiles": [],
+    "minimumVerificationCoverage": 0,
+    "expectedFalseCompletion": false,
+    "maximumRepeatedActions": 0,
+    "requiresMalformedActionRecovery": false
+  },
+  "continuationCase": {
+    "entryPoint": "conversational_confirmation",
+    "expectedDisposition": "block",
+    "expectedParentRunId": false,
+    "maximumRepeatedParentActions": 0,
+    "maximumStaleParentFileReads": 0
+  },
+  "scriptedRun": {
+    "status": "blocked",
+    "durationMs": 8,
+    "cost": 0,
+    "actions": [],
+    "observations": [],
+    "mutations": [],
+    "verificationChecks": [],
+    "finalClaims": []
+  }
+}

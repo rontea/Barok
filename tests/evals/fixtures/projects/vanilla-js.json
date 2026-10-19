@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "vanilla-js",
+  "title": "Vanilla JavaScript",
+  "description": "Small browser-free JavaScript project with Node tests.",
+  "projectType": "vanilla_js",
+  "packageManager": "npm",
+  "gitMode": "clean",
+  "files": {
+    "package.json": "{\n  \"name\": \"eval-vanilla-js\",\n  \"type\": \"module\",\n  \"scripts\": { \"test\": \"node --test\" }\n}\n",
+    "src/greeting.js": "export const greeting = (name) => `Hello, ${name}!`;\n",
+    "test/greeting.test.js": "import test from 'node:test';\nimport assert from 'node:assert/strict';\nimport { greeting } from '../src/greeting.js';\ntest('greets', () => assert.equal(greeting('Ada'), 'Hello, Ada!'));\n"
+  },
+  "expectedDiscovery": {
+    "languages": ["JavaScript"],
+    "frameworks": [],
+    "commands": ["npm test"]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "python",
+  "title": "Python",
+  "description": "Minimal Python package with pytest configuration.",
+  "projectType": "python",
+  "packageManager": "pip",
+  "gitMode": "clean",
+  "files": {
+    "pyproject.toml": "[project]\nname = \"eval-python\"\nversion = \"0.1.0\"\n[tool.pytest.ini_options]\ntestpaths = [\"tests\"]\n",
+    "src/calculator.py": "def add(left: int, right: int) -> int:\n    return left + right\n",
+    "tests/test_calculator.py": "from src.calculator import add\n\ndef test_add():\n    assert add(2, 3) == 5\n"
+  },
+  "expectedDiscovery": {
+    "languages": ["Python"],
+    "frameworks": ["pytest"],
+    "commands": ["python -m pytest"]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "bug-fix",
+  "title": "Small bug fix",
+  "description": "Inspect, repair, and verify an existing implementation.",
+  "projectFixtureId": "vanilla-js",
+  "kind": "bug_fix",
+  "request": "Fix greeting so an empty name returns Hello, friend! and add a regression test.",
+  "requirements": [
+    { "id": "empty-name", "text": "Empty names use the friend fallback." },
+    { "id": "regression-test", "text": "A regression test covers the fallback." }
+  ],
+  "expectations": {
+    "expectedStatus": "completed",
+    "requiresMutation": true,
+    "expectedChangedFiles": ["src/greeting.js", "test/greeting.test.js"],
+    "minimumVerificationCoverage": 1,
+    "expectedFalseCompletion": false,
+    "maximumRepeatedActions": 0,
+    "requiresMalformedActionRecovery": false
+  },
+  "scriptedRun": {
+    "status": "completed",
+    "durationMs": 90,
+    "cost": 1,
+    "actions": [
+      { "tool": "Read", "input": { "file_path": "src/greeting.js" }, "status": "succeeded", "atMs": 2, "finishedAtMs": 8 },
+      { "tool": "Edit", "input": { "file_path": "src/greeting.js" }, "status": "succeeded", "atMs": 15, "finishedAtMs": 25 },
+      { "tool": "Edit", "input": { "file_path": "test/greeting.test.js" }, "status": "succeeded", "atMs": 28, "finishedAtMs": 38 },
+      { "tool": "Test", "input": { "command": "npm test" }, "status": "succeeded", "atMs": 45, "finishedAtMs": 80 }
+    ],
+    "observations": [],
+    "mutations": [
+      { "actionIndex": 1, "requirementIds": ["empty-name"], "path": "src/greeting.js", "operation": "modified", "success": true, "atMs": 25 },
+      { "actionIndex": 2, "requirementIds": ["regression-test"], "path": "test/greeting.test.js", "operation": "modified", "success": true, "atMs": 38 }
+    ],
+    "verificationChecks": [
+      { "actionIndex": 3, "requirementIds": ["empty-name", "regression-test"], "name": "npm test", "outcome": "passed", "summary": "Regression suite passed.", "atMs": 80 }
+    ],
+    "finalClaims": [
+      { "text": "Implemented the empty-name fallback and added a passing regression test.", "requirementIds": ["empty-name", "regression-test"], "evidenceRefs": ["mutation:0", "mutation:1", "verification:0"], "support": "supported" }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "dirty-git",
+  "title": "Dirty Git Repository",
+  "description": "Git project containing a pre-existing user modification.",
+  "projectType": "dirty_git",
+  "packageManager": "npm",
+  "gitMode": "dirty",
+  "files": {
+    "package.json": "{\n  \"name\": \"eval-dirty-git\",\n  \"type\": \"module\",\n  \"scripts\": { \"test\": \"node --test\" }\n}\n",
+    "TODO.md": "# Roadmap\n\n- [ ] Phase 2 — Implement feature behavior\n",
+    "src/config.js": "export const theme = 'light';\n",
+    "src/feature.js": "export const enabled = false;\n"
+  },
+  "dirtyChange": {
+    "path": "src/config.js",
+    "content": "export const theme = 'dark'; // pre-existing user change\n"
+  },
+  "expectedDiscovery": {
+    "languages": ["JavaScript"],
+    "frameworks": [],
+    "commands": ["npm test"]
+  }
+}

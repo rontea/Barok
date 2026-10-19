@@ -1,0 +1,23 @@
+{
+  "name": "@barok/core",
+  "version": "0.0.1-experimental",
+  "private": true,
+  "description": "Host-neutral Barok behavior and contracts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepack": "npm run build"
+  },
+  "files": [
+    "README.md",
+    "dist/"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "continuation",
+  "title": "Continuation request",
+  "description": "Continue a previously actionable task without losing its implementation intent.",
+  "projectFixtureId": "python",
+  "kind": "continuation",
+  "request": "Yes, continue with the calculator validation change.",
+  "requirements": [
+    { "id": "validation", "text": "Calculator input validation is added." },
+    { "id": "tests", "text": "Python tests verify the continuation change." }
+  ],
+  "expectations": {
+    "expectedStatus": "completed",
+    "requiresMutation": true,
+    "expectedChangedFiles": ["src/calculator.py", "tests/test_calculator.py"],
+    "minimumVerificationCoverage": 1,
+    "expectedFalseCompletion": false,
+    "maximumRepeatedActions": 0,
+    "requiresMalformedActionRecovery": false
+  },
+  "scriptedRun": {
+    "status": "completed",
+    "durationMs": 85,
+    "cost": 1,
+    "actions": [
+      { "tool": "Edit", "input": { "file_path": "src/calculator.py" }, "status": "succeeded", "atMs": 10, "finishedAtMs": 22 },
+      { "tool": "Edit", "input": { "file_path": "tests/test_calculator.py" }, "status": "succeeded", "atMs": 25, "finishedAtMs": 38 },
+      { "tool": "Test", "input": { "command": "python -m pytest" }, "status": "succeeded", "atMs": 45, "finishedAtMs": 78 }
+    ],
+    "observations": [],
+    "mutations": [
+      { "actionIndex": 0, "requirementIds": ["validation"], "path": "src/calculator.py", "operation": "modified", "success": true, "atMs": 22 },
+      { "actionIndex": 1, "requirementIds": ["tests"], "path": "tests/test_calculator.py", "operation": "modified", "success": true, "atMs": 38 }
+    ],
+    "verificationChecks": [
+      { "actionIndex": 2, "requirementIds": ["validation", "tests"], "name": "python -m pytest", "outcome": "passed", "summary": "Python tests passed.", "atMs": 78 }
+    ],
+    "finalClaims": [
+      { "text": "Continued the validation change and verified it with pytest.", "requirementIds": ["validation", "tests"], "evidenceRefs": ["mutation:0", "mutation:1", "verification:0"], "support": "supported" }
+    ]
+  }
+}

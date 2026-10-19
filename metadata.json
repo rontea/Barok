@@ -1,0 +1,8 @@
+{
+  "name": "ReAct Engine Dashboard",
+  "description": "A visual interface to explore autonomous task completion via Pollinations AI and the underlying ReAct Engine.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

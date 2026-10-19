@@ -1,0 +1,30 @@
+{
+  "name": "@barok/adapter-node",
+  "version": "0.0.1-experimental",
+  "private": true,
+  "description": "Node.js implementations for Barok host capability ports",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepack": "npm run build"
+  },
+  "files": [
+    "README.md",
+    "dist/"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@barok/engine": "0.0.1-experimental",
+    "playwright": "^1.61.0"
+  }
+}

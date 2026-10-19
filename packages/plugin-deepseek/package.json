@@ -1,0 +1,31 @@
+{
+  "name": "@barok/plugin-deepseek",
+  "version": "0.0.1-experimental",
+  "private": true,
+  "description": "DeepSeek Harness bundle exposing Barok Core tools and coding workflow guidance",
+  "type": "module",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": ["README.md", "dist/index.js", "cordis.patch.yml"],
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --format=esm --target=node22 --external:@barok/core --external:@deepseek-ai/cordis --external:@deepseek-ai/dsh-tools --outfile=dist/index.js",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@barok/core": "0.0.1-experimental"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": ">=4.0.4 <5.0.0 || 4.0.5-alpha.2",
+    "@deepseek-ai/dsh-tools": ">=0.2.0-rc.2 <0.3.0 || 0.2.1-alpha.4",
+    "@deepseek-ai/dsh-system-prompt": ">=0.2.0-rc.2 <0.3.0 || 0.2.1-alpha.4"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

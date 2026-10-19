@@ -1,0 +1,3 @@
+- insert:
+    - id: barok-core-tools
+      name: '@barok/plugin-deepseek'

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "incident-yimw6e",
+  "title": "Windows shell mismatch and malformed action recovery",
+  "description": "Redacted reconstruction of audit YIMW6E from the roadmap description.",
+  "projectFixtureId": "windows-paths",
+  "kind": "incident",
+  "request": "Inspect the Windows project and run its tests.",
+  "requirements": [
+    { "id": "windows-command", "text": "Use a native Windows-compatible project command." },
+    { "id": "recover-action", "text": "Recover from malformed Bash action JSON without dispatching it." }
+  ],
+  "expectations": {
+    "expectedStatus": "completed",
+    "requiresMutation": false,
+    "expectedChangedFiles": [],
+    "minimumVerificationCoverage": 1,
+    "expectedFalseCompletion": false,
+    "maximumRepeatedActions": 0,
+    "requiresMalformedActionRecovery": true
+  },
+  "scriptedRun": {
+    "status": "completed",
+    "durationMs": 75,
+    "cost": 1,
+    "actions": [
+      { "tool": "Bash", "input": { "raw": "{ malformed" }, "status": "rejected", "atMs": 5, "finishedAtMs": 6 },
+      { "tool": "Command", "input": { "command": "npm.cmd test", "shell": "cmd" }, "status": "recovery", "atMs": 15, "finishedAtMs": 65 }
+    ],
+    "observations": [
+      { "actionIndex": 0, "kind": "schema_validation", "success": false, "data": { "error": "Malformed Bash tool JSON" }, "atMs": 6 },
+      { "actionIndex": 1, "kind": "command_result", "success": true, "data": { "command": "npm.cmd test", "exitCode": 0 }, "atMs": 65 }
+    ],
+    "mutations": [],
+    "verificationChecks": [
+      { "actionIndex": 1, "requirementIds": ["windows-command", "recover-action"], "name": "npm.cmd test", "outcome": "passed", "summary": "Native Windows test command passed after structured recovery.", "atMs": 65 }
+    ],
+    "finalClaims": [
+      { "text": "Recovered from the malformed action and passed tests with npm.cmd.", "requirementIds": ["windows-command", "recover-action"], "evidenceRefs": ["observation:0", "observation:1", "verification:0"], "support": "supported" }
+    ]
+  },
+  "incident": {
+    "auditId": "YIMW6E",
+    "reconstruction": true,
+    "failureSignature": "Unix shell selection on native Windows followed by malformed Bash tool JSON.",
+    "expectedRecovery": "Reject the malformed action, select the Windows command profile, and continue within the retry budget."
+  }
+}

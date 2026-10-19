@@ -1,0 +1,31 @@
+/** Compatibility facade for the adapter-node process command runtime. */
+export {
+  detectCommandEnvironment,
+  detectPackageManager,
+  discoverProjectCommand,
+  executeCommandInvocation,
+  executeLegacyShell,
+  normalizeLegacyShellCommand,
+  normalizeNonInteractiveVerificationCommand,
+  normalizeVerificationShellCommand,
+  normalizeWindowsShellCommand,
+  parseDirectWindowsPowerShellCommand,
+  probeCommandPlatformProfile,
+  rejectNativeWindowsUnixSyntax,
+  resolveCommandOperation,
+  rewriteWindowsShellIdioms,
+  stripRedundantWindowsCwdPrefix,
+} from '@barok/adapter-node';
+export type {
+  CommandEnvironment,
+  CommandEnvironmentKind,
+  CommandInvocation,
+  CommandOperation,
+  CommandPlatformProfile,
+  CommandRequest,
+  CommandResult,
+  CommandStatus,
+  DiscoveredProjectCommand,
+  PackageManager,
+  PackageManagerResolution,
+} from '@barok/adapter-node';

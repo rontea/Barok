@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "continuation-max-steps",
+  "title": "Max-step checkpoint continuation",
+  "description": "Resume the exact parent goal from checkpoint evidence without repeating completed discovery.",
+  "projectFixtureId": "python",
+  "kind": "continuation",
+  "request": "Continue from the preserved max-step checkpoint.",
+  "requirements": [
+    { "id": "validation", "text": "Finish calculator input validation." },
+    { "id": "tests", "text": "Verify the continued change." }
+  ],
+  "expectations": {
+    "expectedStatus": "completed",
+    "requiresMutation": true,
+    "expectedChangedFiles": ["src/calculator.py"],
+    "minimumVerificationCoverage": 1,
+    "expectedFalseCompletion": false,
+    "maximumRepeatedActions": 0,
+    "requiresMalformedActionRecovery": false
+  },
+  "continuationCase": {
+    "entryPoint": "max_steps",
+    "expectedDisposition": "continue",
+    "expectedParentRunId": true,
+    "maximumRepeatedParentActions": 0,
+    "maximumStaleParentFileReads": 0
+  },
+  "scriptedRun": {
+    "status": "completed",
+    "durationMs": 55,
+    "cost": 1,
+    "actions": [
+      { "tool": "Edit", "input": { "file_path": "src/calculator.py" }, "status": "succeeded", "atMs": 5, "finishedAtMs": 20 },
+      { "tool": "Test", "input": { "command": "python -m pytest" }, "status": "succeeded", "atMs": 25, "finishedAtMs": 50 }
+    ],
+    "observations": [],
+    "mutations": [
+      { "actionIndex": 0, "requirementIds": ["validation"], "path": "src/calculator.py", "operation": "modified", "success": true, "atMs": 20 }
+    ],
+    "verificationChecks": [
+      { "actionIndex": 1, "requirementIds": ["validation", "tests"], "name": "python -m pytest", "outcome": "passed", "summary": "Continued validation tests passed.", "atMs": 50 }
+    ],
+    "finalClaims": [
+      { "text": "Finished the checkpointed validation change and verified it.", "requirementIds": ["validation", "tests"], "evidenceRefs": ["mutation:0", "verification:0"], "support": "supported" }
+    ]
+  }
+}

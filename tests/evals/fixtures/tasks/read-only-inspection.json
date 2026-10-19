@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "read-only-inspection",
+  "title": "Read-only repository inspection",
+  "description": "Inspect and explain code without claiming or producing mutations.",
+  "projectFixtureId": "no-git",
+  "kind": "read_only",
+  "request": "Explain what src/value.js exports. Do not change files.",
+  "requirements": [],
+  "expectations": {
+    "expectedStatus": "completed",
+    "requiresMutation": false,
+    "expectedChangedFiles": [],
+    "minimumVerificationCoverage": 0,
+    "expectedFalseCompletion": false,
+    "maximumRepeatedActions": 0,
+    "requiresMalformedActionRecovery": false
+  },
+  "scriptedRun": {
+    "status": "completed",
+    "durationMs": 20,
+    "cost": 0,
+    "actions": [
+      { "tool": "Read", "input": { "file_path": "src/value.js" }, "status": "succeeded", "atMs": 2, "finishedAtMs": 5 }
+    ],
+    "observations": [
+      { "actionIndex": 0, "kind": "file_read", "success": true, "data": { "path": "src/value.js", "content": "export const value = 42;" }, "atMs": 5 }
+    ],
+    "mutations": [],
+    "verificationChecks": [],
+    "finalClaims": [
+      { "text": "The module exports the numeric constant value with value 42.", "requirementIds": [], "evidenceRefs": ["observation:0"], "support": "supported" }
+    ]
+  }
+}

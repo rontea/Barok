@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "continuation-unrelated-new-work",
+  "title": "Unrelated request after prior work",
+  "description": "Treat unrelated work as a clean task and do not replay or reread stale parent evidence.",
+  "projectFixtureId": "no-git",
+  "kind": "feature",
+  "request": "Create a new README note unrelated to the prior calculator task.",
+  "requirements": [
+    { "id": "note", "text": "Add the requested independent README note." }
+  ],
+  "expectations": {
+    "expectedStatus": "completed",
+    "requiresMutation": true,
+    "expectedChangedFiles": ["README.md"],
+    "minimumVerificationCoverage": 1,
+    "expectedFalseCompletion": false,
+    "maximumRepeatedActions": 0,
+    "requiresMalformedActionRecovery": false
+  },
+  "continuationCase": {
+    "entryPoint": "conversational_confirmation",
+    "expectedDisposition": "new_task",
+    "expectedParentRunId": false,
+    "maximumRepeatedParentActions": 0,
+    "maximumStaleParentFileReads": 0
+  },
+  "scriptedRun": {
+    "status": "completed",
+    "durationMs": 35,
+    "cost": 0,
+    "actions": [
+      { "tool": "Edit", "input": { "file_path": "README.md" }, "status": "succeeded", "atMs": 5, "finishedAtMs": 18 },
+      { "tool": "Command", "input": { "operation": "verify", "command": "verify README.md" }, "status": "succeeded", "atMs": 20, "finishedAtMs": 30 }
+    ],
+    "observations": [],
+    "mutations": [
+      { "actionIndex": 0, "requirementIds": ["note"], "path": "README.md", "operation": "modified", "success": true, "atMs": 18 }
+    ],
+    "verificationChecks": [
+      { "actionIndex": 1, "requirementIds": ["note"], "name": "verify README.md", "outcome": "passed", "summary": "Independent README note is present.", "atMs": 30 }
+    ],
+    "finalClaims": [
+      { "text": "Added and verified the independent README note without using prior task context.", "requirementIds": ["note"], "evidenceRefs": ["mutation:0", "verification:0"], "support": "supported" }
+    ]
+  }
+}

@@ -1,0 +1,2 @@
+=== Starting Offline Engine Verification ===
+Task: Create a temporary folder named "react_temp_test" if it does not exist, and write a test file named "test_offline.txt" inside it with the text "Engine offline test working". Verify using bash that the file exists and its contents are correct, and output the content perfectly.

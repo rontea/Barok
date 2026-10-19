@@ -1,0 +1,13 @@
+{
+  "projectFixtureId": "vanilla-js",
+  "task": "Fix greeting so an empty name returns Hello, friend! and add a regression test.",
+  "affectedFiles": ["src/greeting.js", "test/greeting.test.js"],
+  "actions": [
+    { "action": "Read", "action_input": { "file_path": "src/greeting.js" } },
+    { "action": "Write", "action_input": { "file_path": "src/greeting.js", "content": "export const greeting = (name) => `Hello, ${name || 'friend'}!`;\n" } },
+    { "action": "Read", "action_input": { "file_path": "test/greeting.test.js" } },
+    { "action": "Write", "action_input": { "file_path": "test/greeting.test.js", "content": "import test from 'node:test';\nimport assert from 'node:assert/strict';\nimport { greeting } from '../src/greeting.js';\ntest('greets', () => assert.equal(greeting('Ada'), 'Hello, Ada!'));\ntest('uses friend for empty name', () => assert.equal(greeting(''), 'Hello, friend!'));\n" } },
+    { "action": "Bash", "action_input": { "command": "npm run test" } }
+  ],
+  "finalAnswer": "Implemented the empty-name fallback, added its regression test, and verified it with npm test."
+}

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "refactor",
+  "title": "Behavior-preserving refactor",
+  "description": "Refactor implementation while preserving tested behavior.",
+  "projectFixtureId": "node-typescript",
+  "kind": "refactor",
+  "request": "Refactor add to use a named result while preserving behavior and verify TypeScript.",
+  "requirements": [
+    { "id": "refactored", "text": "The implementation is refactored without unrelated changes." },
+    { "id": "behavior-preserved", "text": "Existing behavior and compilation remain valid." }
+  ],
+  "expectations": {
+    "expectedStatus": "completed",
+    "requiresMutation": true,
+    "expectedChangedFiles": ["src/math.ts"],
+    "minimumVerificationCoverage": 1,
+    "expectedFalseCompletion": false,
+    "maximumRepeatedActions": 0,
+    "requiresMalformedActionRecovery": false
+  },
+  "scriptedRun": {
+    "status": "completed",
+    "durationMs": 70,
+    "cost": 1,
+    "actions": [
+      { "tool": "Read", "input": { "file_path": "src/math.ts" }, "status": "succeeded", "atMs": 2, "finishedAtMs": 7 },
+      { "tool": "Edit", "input": { "file_path": "src/math.ts" }, "status": "succeeded", "atMs": 12, "finishedAtMs": 22 },
+      { "tool": "Build", "input": { "command": "npm run build" }, "status": "succeeded", "atMs": 30, "finishedAtMs": 62 }
+    ],
+    "observations": [],
+    "mutations": [
+      { "actionIndex": 1, "requirementIds": ["refactored"], "path": "src/math.ts", "operation": "modified", "success": true, "atMs": 22 }
+    ],
+    "verificationChecks": [
+      { "actionIndex": 2, "requirementIds": ["refactored", "behavior-preserved"], "name": "npm run build", "outcome": "passed", "summary": "TypeScript compilation passed.", "atMs": 62 }
+    ],
+    "finalClaims": [
+      { "text": "Refactored add and preserved the verified TypeScript behavior.", "requirementIds": ["refactored", "behavior-preserved"], "evidenceRefs": ["mutation:0", "verification:0"], "support": "supported" }
+    ]
+  }
+}

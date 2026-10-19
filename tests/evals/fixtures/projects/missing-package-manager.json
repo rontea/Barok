@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "missing-package-manager",
+  "title": "Missing Package Manager",
+  "description": "Project declares pnpm but the evaluation environment treats it as unavailable.",
+  "projectType": "missing_package_manager",
+  "packageManager": "missing",
+  "gitMode": "clean",
+  "files": {
+    "package.json": "{\n  \"name\": \"eval-missing-manager\",\n  \"packageManager\": \"pnpm@10.0.0\",\n  \"scripts\": { \"test\": \"node --test\" }\n}\n",
+    "src/index.js": "export const ready = true;\n"
+  },
+  "expectedDiscovery": {
+    "languages": ["JavaScript"],
+    "frameworks": ["Node.js"],
+    "commands": ["pnpm test"]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "windows-paths",
+  "title": "Windows Paths",
+  "description": "Native Windows-style relative paths and npm command launcher expectations.",
+  "projectType": "windows_paths",
+  "packageManager": "npm",
+  "gitMode": "clean",
+  "files": {
+    "package.json": "{\n  \"name\": \"eval-windows-paths\",\n  \"scripts\": { \"test\": \"node --test\" }\n}\n",
+    "src\\nested\\value.js": "module.exports = { value: 7 };\n",
+    "test\\value.test.js": "const test = require('node:test');\nconst assert = require('node:assert/strict');\nconst { value } = require('../src/nested/value');\ntest('value', () => assert.equal(value, 7));\n"
+  },
+  "expectedDiscovery": {
+    "languages": ["JavaScript"],
+    "frameworks": ["Node.js"],
+    "commands": ["npm.cmd test"]
+  }
+}
